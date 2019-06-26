@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58872_needit.ScriptIncludeGetEmailAddress</api_name>
+        <client_callable>true</client_callable>
+        <description>Script Include to return an email address. The calling client-side script passes a sys_id for a User table record.</description>
+        <name>ScriptIncludeGetEmailAddress</name>
+        <script><![CDATA[var ScriptIncludeGetEmailAddress = Class.create();
+// Extend the global.AbstractAjaxProcessor class
+ScriptIncludeGetEmailAddress.prototype = Object.extendsObject(global.AbstractAjaxProcessor,{
+	// Define the getEmail function.  
+	// Create a GlideRecord for the User table.
+	// Use the sysparm_userID passed from the client side to retrieve a record from the User table.
+	// Return the email address for the requested record
+	getEmail: function() {
+		var userRecord = new GlideRecord("sys_user");
+		//The syntax sysparm_ indicates to the Script Include that a value will be passed in from a client-side script at runtime. this.getParameter() is used to retrieve parameter values.
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.email + '';
+	},
+	type: 'ScriptIncludeGetEmailAddress'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-26 07:55:42</sys_created_on>
+        <sys_id>56e9f74ddb52730003ec8a1848961951</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>ScriptIncludeGetEmailAddress</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_56e9f74ddb52730003ec8a1848961951</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-26 07:58:36</sys_updated_on>
+    </sys_script_include>
+</record_update>
